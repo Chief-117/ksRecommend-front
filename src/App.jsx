@@ -22,7 +22,7 @@ function App() {
 
     try {
       const res = await fetch(
-        `/api/restaurants?district=${selectedDistrict}&type=${selectedType}`
+        `https://ksrecommend-back.onrender.com/api/restaurants?district=${selectedDistrict}&type=${selectedType}`
       );
       const data = await res.json();
       setResults(data);
