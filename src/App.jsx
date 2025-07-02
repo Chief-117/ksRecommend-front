@@ -65,13 +65,13 @@ function App() {
         colorScheme: "light",
       }}
     >
-      {/* 頁首背景：亮藍 */}
-      <div style={{ backgroundColor: "#C1E8FF" }} className="text-black py-14 px-8 w-full">
+      {/* 頁首背景：改為 #7DA0CA */}
+      <div style={{ backgroundColor: "#7DA0CA" }} className="text-black py-14 px-8 w-full">
         <h1 className="text-3xl font-bold">高雄呷飽未 🍜</h1>
       </div>
 
-      {/* 搜尋區背景：亮藍 */}
-      <div style={{ backgroundColor: "#C1E8FF" }} className="w-full py-6 px-4 flex flex-col md:flex-row md:justify-center items-center gap-4">
+      {/* 搜尋區背景：同上 */}
+      <div style={{ backgroundColor: "#7DA0CA" }} className="w-full py-6 px-4 flex flex-col md:flex-row md:justify-center items-center gap-4">
         <input
           type="text"
           placeholder="可直接輸入行政區查詢，如『苓雅區』，或使用下拉選單"
@@ -123,13 +123,13 @@ function App() {
           <option value="韓式">韓式</option>
         </select>
 
-        {/* 查詢按鈕：中藍色 */}
+        {/* 查詢按鈕：亮藍 #C1E8FF */}
         <button
           onClick={handleSearch}
           className="w-full max-w-xs"
           style={{
-            backgroundColor: "#7DA0CA",
-            color: "#fff",
+            backgroundColor: "#C1E8FF",
+            color: "#000",
             fontWeight: "600",
             padding: "0.5rem 1rem",
             borderRadius: "0.375rem",
