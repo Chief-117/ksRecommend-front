@@ -65,7 +65,8 @@ function App() {
   return (
     <div className="min-h-screen w-screen flex flex-col bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: !searchTriggered && !isLoading ? "url('/bg-food.jpg')" : "none",
+        backgroundImage: !searchTriggered && !isLoading ? "url('/bg-food.png')" : "none",
+        backgroundColor: "red",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
