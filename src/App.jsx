@@ -65,14 +65,13 @@ function App() {
         colorScheme: "light",
       }}
     >
-      {/* 頁首 */}
-      <div className="bg-amber-700 text-white py-14 px-8 w-full">
+      {/* 頁首背景：深藍 */}
+      <div style={{ backgroundColor: "#021024" }} className="text-white py-14 px-8 w-full">
         <h1 className="text-3xl font-bold">高雄呷飽未 🍜</h1>
       </div>
 
-      {/* 搜尋區 */}
-      <div className="bg-amber-500 w-full py-6 px-4 flex flex-col md:flex-row md:justify-center items-center gap-4">
-        {/* 手動輸入 */}
+      {/* 搜尋區背景：深藍 */}
+      <div style={{ backgroundColor: "#021024" }} className="w-full py-6 px-4 flex flex-col md:flex-row md:justify-center items-center gap-4">
         <input
           type="text"
           placeholder="可直接輸入行政區查詢，如『苓雅區』，或使用下拉選單"
@@ -84,66 +83,57 @@ function App() {
           }}
         />
 
-        {/* 行政區選單（帶箭頭） */}
-        <div className="relative w-full max-w-xs">
-          <select
-            value={selectedDistrict}
-            onChange={(e) => {
-              setSelectedDistrict(e.target.value);
-              setSelectedType("none");
-              setKeyword("");
-            }}
-            className="w-full px-4 py-2 rounded-md text-center appearance-none bg-white text-black"
-          >
-            <option value="none">選擇行政區</option>
-            <option value="鼓山區">鼓山區</option>
-            <option value="左營區">左營區</option>
-            <option value="楠梓區">楠梓區</option>
-            <option value="三民區">三民區</option>
-            <option value="新興區">新興區</option>
-            <option value="前金區">前金區</option>
-            <option value="苓雅區">苓雅區</option>
-            <option value="前鎮區">前鎮區</option>
-            <option value="小港區">小港區</option>
-            <option value="鳳山區">鳳山區</option>
-            <option value="鹽埕區">鹽埕區</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-            <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
+        <select
+          value={selectedDistrict}
+          onChange={(e) => {
+            setSelectedDistrict(e.target.value);
+            setSelectedType("none");
+            setKeyword("");
+          }}
+          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white text-center"
+        >
+          <option value="none">選擇行政區</option>
+          <option value="鼓山區">鼓山區</option>
+          <option value="左營區">左營區</option>
+          <option value="楠梓區">楠梓區</option>
+          <option value="三民區">三民區</option>
+          <option value="新興區">新興區</option>
+          <option value="前金區">前金區</option>
+          <option value="苓雅區">苓雅區</option>
+          <option value="前鎮區">前鎮區</option>
+          <option value="小港區">小港區</option>
+          <option value="鳳山區">鳳山區</option>
+          <option value="鹽埕區">鹽埕區</option>
+        </select>
 
-        {/* 菜系選單（帶箭頭） */}
-        <div className="relative w-full max-w-xs">
-          <select
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-            disabled={selectedDistrict === "none" && keyword === ""}
-            className={`w-full px-4 py-2 rounded-md text-center appearance-none ${
-              selectedDistrict === "none" && keyword === ""
-                ? "text-gray-400 cursor-not-allowed bg-gray-100"
-                : "text-black bg-white"
-            }`}
-          >
-            <option value="none">選擇菜系</option>
-            <option value="all">全部類型</option>
-            <option value="中式">中式</option>
-            <option value="日式">日式</option>
-            <option value="韓式">韓式</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-            <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
+        <select
+          value={selectedType}
+          onChange={(e) => setSelectedType(e.target.value)}
+          disabled={selectedDistrict === "none" && keyword === ""}
+          className={`w-full max-w-xs px-4 py-2 rounded-md text-center ${
+            selectedDistrict === "none" && keyword === ""
+              ? "text-gray-400 cursor-not-allowed bg-gray-100"
+              : "text-black bg-white"
+          }`}
+        >
+          <option value="none">選擇菜系</option>
+          <option value="all">全部類型</option>
+          <option value="中式">中式</option>
+          <option value="日式">日式</option>
+          <option value="韓式">韓式</option>
+        </select>
 
-        {/* 查詢按鈕 */}
+        {/* 查詢按鈕：淺藍 */}
         <button
           onClick={handleSearch}
-          className="w-full max-w-xs bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-white font-semibold text-center"
+          className="w-full max-w-xs"
+          style={{
+            backgroundColor: "#C1E8FF",
+            color: "#000",
+            fontWeight: "600",
+            padding: "0.5rem 1rem",
+            borderRadius: "0.375rem",
+          }}
         >
           查詢
         </button>
