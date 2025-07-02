@@ -24,7 +24,6 @@ function App() {
       return;
     }
 
-    // 預設菜系為全部
     if ((selectedDistrict === "none" && keyword !== "") && selectedType === "none") {
       typeParam = "all";
     }
@@ -76,7 +75,7 @@ function App() {
         <input
           type="text"
           placeholder="可直接輸入行政區查詢，如『苓雅區』，或使用下拉選單"
-          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white"
+          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white text-center truncate overflow-hidden whitespace-nowrap"
           value={keyword}
           onChange={(e) => {
             setKeyword(e.target.value.trim());
@@ -91,7 +90,7 @@ function App() {
             setSelectedType("none");
             setKeyword("");
           }}
-          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white"
+          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white text-center"
         >
           <option value="none">選擇行政區</option>
           <option value="鼓山區">鼓山區</option>
@@ -111,7 +110,7 @@ function App() {
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
           disabled={selectedDistrict === "none" && keyword === ""}
-          className={`w-full max-w-xs px-4 py-2 rounded-md ${
+          className={`w-full max-w-xs px-4 py-2 rounded-md text-center ${
             selectedDistrict === "none" && keyword === ""
               ? "text-gray-400 cursor-not-allowed bg-gray-100"
               : "text-black bg-white"
@@ -126,7 +125,7 @@ function App() {
 
         <button
           onClick={handleSearch}
-          className="w-full max-w-xs bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-white font-semibold"
+          className="w-full max-w-xs bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-white font-semibold text-center"
         >
           查詢
         </button>
