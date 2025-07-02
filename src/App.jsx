@@ -44,7 +44,7 @@ function App() {
     >
       {/* 頁首深咖啡色 */}
       <div className="bg-amber-700 text-white py-20 px-8 w-full">
-        <h1 className="text-3xl font-bold">高雄食啊霸 🍜</h1>
+        <h1 className="text-3xl font-bold">高雄呷飽未 🍜</h1>
       </div>
 
       {/* 搜尋區塊 淺咖啡色 */}
