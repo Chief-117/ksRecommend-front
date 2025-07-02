@@ -3,14 +3,21 @@ import React, { useState } from "react";
 function App() {
   const [selectedDistrict, setSelectedDistrict] = useState("none");
   const [selectedType, setSelectedType] = useState("none");
+  const [manualInput, setManualInput] = useState("");
   const [searchTriggered, setSearchTriggered] = useState(false);
   const [results, setResults] = useState([]);
   const [alertMsg, setAlertMsg] = useState("");
 
   const handleSearch = async () => {
-    if (selectedDistrict === "none" || selectedType === "none") {
+    // ✅ 優先使用 dropdown 的選項，若為 none，才使用 manualInput
+    const districtToUse =
+      selectedDistrict !== "none"
+        ? selectedDistrict
+        : manualInput.trim();
+
+    if (!districtToUse || selectedType === "none") {
       let msg = "";
-      if (selectedDistrict === "none") msg += "請選擇行政區\n";
+      if (!districtToUse) msg += "請選擇或輸入行政區\n";
       if (selectedType === "none") msg += "請選擇菜系";
       setAlertMsg(msg);
       setResults([]);
@@ -22,7 +29,7 @@ function App() {
 
     try {
       const res = await fetch(
-        `https://ksrecommend-back.onrender.com/api/restaurants?district=${selectedDistrict}&type=${selectedType}`
+        `https://ksrecommend-back.onrender.com/api/restaurants?district=${districtToUse}&type=${selectedType}`
       );
       const data = await res.json();
       setResults(data);
@@ -51,8 +58,10 @@ function App() {
       <div className="bg-amber-500 w-full py-6 px-8 flex flex-col items-center md:flex-row md:justify-center gap-4">
         <input
           type="text"
-          placeholder="請手動輸入關鍵字(非必填)"
+          placeholder="請手動輸入行政區（非必填）"
           className="px-4 py-2 rounded-md text-black bg-white"
+          value={manualInput}
+          onChange={(e) => setManualInput(e.target.value)}
         />
 
         <select
