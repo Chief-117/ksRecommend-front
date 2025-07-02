@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function App() {
   const [selectedDistrict, setSelectedDistrict] = useState("none");
   const [selectedType, setSelectedType] = useState("none");
+  const [selectedPrice, setSelectedPrice] = useState("none");
   const [keyword, setKeyword] = useState("");
   const [searchTriggered, setSearchTriggered] = useState(false);
   const [results, setResults] = useState([]);
@@ -12,6 +13,7 @@ function App() {
   const handleSearch = async () => {
     let district = selectedDistrict;
     let typeParam = selectedType;
+    let priceParam = selectedPrice;
 
     if (district === "none" && keyword) {
       district = keyword;
@@ -36,9 +38,12 @@ function App() {
     setSearchTriggered(false);
 
     try {
-      const res = await fetch(
-        `https://ksrecommend-back.onrender.com/api/restaurants?district=${district}&type=${typeParam}`
-      );
+      let query = `https://ksrecommend-back.onrender.com/api/restaurants?district=${district}&type=${typeParam}`;
+      if (priceParam !== "none") {
+        query += `&price=${priceParam}`;
+      }
+
+      const res = await fetch(query);
       const data = await res.json();
       setResults(data);
       setSearchTriggered(true);
@@ -65,12 +70,10 @@ function App() {
         colorScheme: "light",
       }}
     >
-      {/* 頁首背景：改為 #7DA0CA */}
       <div style={{ backgroundColor: "#7DA0CA" }} className="text-black py-14 px-8 w-full">
         <h1 className="text-3xl font-bold">高雄呷飽未 🍜</h1>
       </div>
 
-      {/* 搜尋區背景：同上 */}
       <div style={{ backgroundColor: "#7DA0CA" }} className="w-full py-6 px-4 flex flex-col md:flex-row md:justify-center items-center gap-4">
         <input
           type="text"
@@ -121,9 +124,24 @@ function App() {
           <option value="中式">中式</option>
           <option value="日式">日式</option>
           <option value="韓式">韓式</option>
+          <option value="美式">美式</option>
+          <option value="義式">義式</option>
+          <option value="泰式">泰式</option>
+          <option value="甜點">甜點</option>
         </select>
 
-        {/* 查詢按鈕：亮藍 #C1E8FF */}
+        <select
+          value={selectedPrice}
+          onChange={(e) => setSelectedPrice(e.target.value)}
+          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white text-center"
+        >
+          <option value="none">選擇價格範圍</option>
+          <option value="0-500">NT$0 - 500</option>
+          <option value="500-1000">NT$500 - 1000</option>
+          <option value="1000-2000">NT$1000 - 2000</option>
+          <option value="2000+">NT$2000 以上</option>
+        </select>
+
         <button
           onClick={handleSearch}
           className="w-full max-w-xs"
@@ -139,7 +157,6 @@ function App() {
         </button>
       </div>
 
-      {/* 結果區塊 */}
       <div className="w-full flex-1 px-6 py-10 bg-white bg-opacity-90">
         {isLoading ? (
           <p className="text-center text-gray-600 text-lg font-semibold">
