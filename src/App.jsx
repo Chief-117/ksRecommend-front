@@ -63,14 +63,14 @@ function App() {
   };
 
   return (
-    <div
-      className="min-h-screen w-screen flex flex-col bg-cover bg-center bg-no-repeat"
+    <div className="min-h-screen w-screen flex flex-col bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/foodbg.jpg')",
-        colorScheme: "light",
+        backgroundImage: !searchTriggered && !isLoading ? "url('/bg-food.jpg')" : "none",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
-      {/* 標題 */}
+      {/* 標題列 */}
       <div style={{ backgroundColor: "#7DA0CA" }} className="text-black py-14 px-8 w-full">
         <h1
           onClick={() => window.location.reload()}
@@ -81,7 +81,7 @@ function App() {
         </h1>
       </div>
 
-      {/* 查詢區 */}
+      {/* 查詢區塊 */}
       <div style={{ backgroundColor: "#7DA0CA" }} className="w-full py-6 px-4 flex flex-col md:flex-row md:justify-center items-center gap-4">
         <input
           type="text"
@@ -156,8 +156,18 @@ function App() {
         </button>
       </div>
 
-      {/* 結果區 */}
-      <div className="w-full flex-1 px-6 py-10 bg-white bg-opacity-90">
+      {/* 結果區塊 */}
+      <div
+        className="w-full flex-1 px-6 py-10 bg-white bg-opacity-90 relative"
+      >
+        {!searchTriggered && !isLoading && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-800 bg-white bg-opacity-80 px-4">
+            <h2 className="text-3xl font-bold mb-4">🍜 歡迎來到高雄呷飽未</h2>
+            <p className="text-lg mb-2">請輸入行政區與菜系開始查詢</p>
+            <p className="text-sm text-gray-500">背景圖片為吉卜力風格插畫</p>
+          </div>
+        )}
+
         {isLoading ? (
           <p className="text-center text-gray-600 text-lg font-semibold">查詢中，請稍候...</p>
         ) : (
