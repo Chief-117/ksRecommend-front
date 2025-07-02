@@ -63,10 +63,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen w-screen flex flex-col bg-cover bg-center bg-no-repeat"
+    <div
+      className="min-h-screen w-screen flex flex-col bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: !searchTriggered && !isLoading ? "url('/bg-food.png')" : "none",
-        backgroundColor: "red",
+        backgroundImage: !searchTriggered && !isLoading
+          ? `url(${import.meta.env.BASE_URL}bg-food.png)`
+          : "none",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -158,9 +160,7 @@ function App() {
       </div>
 
       {/* 結果區塊 */}
-      <div
-        className="w-full flex-1 px-6 py-10 bg-white bg-opacity-90 relative"
-      >
+      <div className="w-full flex-1 px-6 py-10 bg-white bg-opacity-90 relative">
         {!searchTriggered && !isLoading && (
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-800 bg-white bg-opacity-80 px-4">
             <h2 className="text-3xl font-bold mb-4">🍜 歡迎來到高雄呷飽未</h2>
