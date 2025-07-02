@@ -72,7 +72,13 @@ function App() {
     >
       {/* 標題 */}
       <div style={{ backgroundColor: "#7DA0CA" }} className="text-black py-14 px-8 w-full">
-        <h1 className="text-3xl font-bold">高雄呷飽未 🍜</h1>
+        <h1
+          onClick={() => window.location.reload()}
+          className="text-3xl font-bold cursor-pointer hover:underline"
+          title="點擊重新整理"
+        >
+          高雄呷飽未 🍜
+        </h1>
       </div>
 
       {/* 查詢區 */}
