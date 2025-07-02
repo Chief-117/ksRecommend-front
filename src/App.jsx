@@ -43,7 +43,7 @@ function App() {
       }}
     >
       {/* 頁首深咖啡色 */}
-      <div className="bg-amber-700 text-white py-20 px-8 w-full">
+      <div className="bg-amber-700 text-white py-14 px-8 w-full">
         <h1 className="text-3xl font-bold">高雄呷飽未 🍜</h1>
       </div>
 
