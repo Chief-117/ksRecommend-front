@@ -133,7 +133,12 @@ function App() {
         <select
           value={selectedPrice}
           onChange={(e) => setSelectedPrice(e.target.value)}
-          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white text-center"
+          disabled={selectedDistrict === "none" && keyword === ""}
+          className={`w-full max-w-xs px-4 py-2 rounded-md text-center ${
+            selectedDistrict === "none" && keyword === ""
+              ? "text-gray-400 cursor-not-allowed bg-gray-100"
+              : "text-black bg-white"
+          }`}
         >
           <option value="none">選擇價格範圍</option>
           <option value="0-500">NT$0 - 500</option>
