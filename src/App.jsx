@@ -24,12 +24,10 @@ function App() {
       return;
     }
 
-    // ✅ 若僅輸入行政區，但沒選菜系，預設查全部
+    // 預設菜系為全部
     if ((selectedDistrict === "none" && keyword !== "") && selectedType === "none") {
       typeParam = "all";
     }
-
-    // ✅ 若選單有選行政區但菜系為 none，也預設查全部
     if (selectedDistrict !== "none" && selectedType === "none") {
       typeParam = "all";
     }
@@ -74,15 +72,15 @@ function App() {
       </div>
 
       {/* 搜尋區 */}
-      <div className="bg-amber-500 w-full py-6 px-8 flex flex-col items-center md:flex-row md:justify-center gap-4">
+      <div className="bg-amber-500 w-full py-6 px-4 flex flex-col md:flex-row md:justify-center items-center gap-4">
         <input
           type="text"
           placeholder="可直接輸入行政區查詢，如『苓雅區』，或使用下拉選單"
-          className="px-4 py-2 rounded-md text-black bg-white"
+          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white"
           value={keyword}
           onChange={(e) => {
             setKeyword(e.target.value.trim());
-            setSelectedDistrict("none"); // 清除下拉選擇
+            setSelectedDistrict("none");
           }}
         />
 
@@ -91,9 +89,9 @@ function App() {
           onChange={(e) => {
             setSelectedDistrict(e.target.value);
             setSelectedType("none");
-            setKeyword(""); // 清除輸入欄
+            setKeyword("");
           }}
-          className="px-4 py-2 rounded-md text-black bg-white"
+          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white"
         >
           <option value="none">選擇行政區</option>
           <option value="鼓山區">鼓山區</option>
@@ -113,7 +111,7 @@ function App() {
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
           disabled={selectedDistrict === "none" && keyword === ""}
-          className={`px-4 py-2 rounded-md ${
+          className={`w-full max-w-xs px-4 py-2 rounded-md ${
             selectedDistrict === "none" && keyword === ""
               ? "text-gray-400 cursor-not-allowed bg-gray-100"
               : "text-black bg-white"
@@ -128,7 +126,7 @@ function App() {
 
         <button
           onClick={handleSearch}
-          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-white font-semibold"
+          className="w-full max-w-xs bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-white font-semibold"
         >
           查詢
         </button>
