@@ -70,15 +70,17 @@ function App() {
         colorScheme: "light",
       }}
     >
+      {/* 標題 */}
       <div style={{ backgroundColor: "#7DA0CA" }} className="text-black py-14 px-8 w-full">
         <h1 className="text-3xl font-bold">高雄呷飽未 🍜</h1>
       </div>
 
+      {/* 查詢區 */}
       <div style={{ backgroundColor: "#7DA0CA" }} className="w-full py-6 px-4 flex flex-col md:flex-row md:justify-center items-center gap-4">
         <input
           type="text"
           placeholder="可直接輸入行政區查詢，如『苓雅區』，或使用下拉選單"
-          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white text-center truncate overflow-hidden whitespace-nowrap"
+          className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white text-center truncate"
           value={keyword}
           onChange={(e) => {
             setKeyword(e.target.value.trim());
@@ -96,17 +98,9 @@ function App() {
           className="w-full max-w-xs px-4 py-2 rounded-md text-black bg-white text-center"
         >
           <option value="none">選擇行政區</option>
-          <option value="鼓山區">鼓山區</option>
-          <option value="左營區">左營區</option>
-          <option value="楠梓區">楠梓區</option>
-          <option value="三民區">三民區</option>
-          <option value="新興區">新興區</option>
-          <option value="前金區">前金區</option>
-          <option value="苓雅區">苓雅區</option>
-          <option value="前鎮區">前鎮區</option>
-          <option value="小港區">小港區</option>
-          <option value="鳳山區">鳳山區</option>
-          <option value="鹽埕區">鹽埕區</option>
+          {["鼓山區", "左營區", "楠梓區", "三民區", "新興區", "前金區", "苓雅區", "前鎮區", "小港區", "鳳山區", "鹽埕區"].map((d) => (
+            <option key={d} value={d}>{d}</option>
+          ))}
         </select>
 
         <select
@@ -149,32 +143,23 @@ function App() {
 
         <button
           onClick={handleSearch}
-          className="w-full max-w-xs"
-          style={{
-            backgroundColor: "#C1E8FF",
-            color: "#000",
-            fontWeight: "600",
-            padding: "0.5rem 1rem",
-            borderRadius: "0.375rem",
-          }}
+          className="w-full max-w-xs font-semibold px-4 py-2 rounded-md"
+          style={{ backgroundColor: "#C1E8FF", color: "#000" }}
         >
           查詢
         </button>
       </div>
 
+      {/* 結果區 */}
       <div className="w-full flex-1 px-6 py-10 bg-white bg-opacity-90">
         {isLoading ? (
-          <p className="text-center text-gray-600 text-lg font-semibold">
-            查詢中，請稍候...
-          </p>
+          <p className="text-center text-gray-600 text-lg font-semibold">查詢中，請稍候...</p>
         ) : (
           searchTriggered &&
           isReadyToShow && (
             <>
               {results.length === 0 ? (
-                <p className="text-gray-700 text-center">
-                  找不到符合條件的餐廳
-                </p>
+                <p className="text-gray-700 text-center">找不到符合條件的餐廳</p>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                   {results.map((r) => (
@@ -199,17 +184,15 @@ function App() {
                           >
                             {r.name}
                           </a>
-                          <span className="text-yellow-600 text-sm ml-2">
-                            ⭐ {r.rating ? `${r.rating} / 5` : "尚無評分"}
-                          </span>
+                          <div className="flex items-center gap-1 text-yellow-600 text-sm whitespace-nowrap ml-2">
+                            <span>⭐</span>
+                            <span>{r.rating ? `${r.rating} / 5` : "尚無評分"}</span>
+                          </div>
                         </div>
-
                         <p className="text-sm text-gray-600 mt-1">
                           {r.district}｜{r.price_range || "未提供"}
                         </p>
-                        <p className="text-sm mt-2 text-gray-800">
-                          📍 {r.address}
-                        </p>
+                        <p className="text-sm mt-2 text-gray-800">📍 {r.address}</p>
                       </div>
                     </div>
                   ))}
