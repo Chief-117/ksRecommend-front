@@ -190,14 +190,20 @@ function App() {
                         />
                       )}
                       <div className="p-4 text-left">
-                        <a
-                          href={r.maps_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-lg font-bold text-blue-700 hover:underline block"
-                        >
-                          {r.name}
-                        </a>
+                        <div className="flex items-center justify-between">
+                          <a
+                            href={r.maps_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-lg font-bold text-blue-700 hover:underline"
+                          >
+                            {r.name}
+                          </a>
+                          <span className="text-yellow-600 text-sm ml-2">
+                            ⭐ {r.rating ? `${r.rating} / 5` : "尚無評分"}
+                          </span>
+                        </div>
+
                         <p className="text-sm text-gray-600 mt-1">
                           {r.district}｜{r.price_range || "未提供"}
                         </p>
