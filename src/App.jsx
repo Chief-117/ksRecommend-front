@@ -142,7 +142,7 @@ function App() {
             <option value="none">選擇價格範圍</option>
             <option value="0-500">NT$0 - 500</option>
             <option value="500-1000">NT$500 - 1000</option>
-            <option value="1000-1999">NT$1000 - 2000</option>
+            <option value="1000-2000">NT$1000 - 2000</option>
             <option value="2000up">NT$2000 以上</option>
           </select>
 
