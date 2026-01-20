@@ -77,7 +77,7 @@ function App() {
           className="text-3xl font-bold cursor-pointer hover:underline mb-2"
           title="點擊重新整理"
         >
-          🍜 高雄呷飽未 
+          🍜 餐廳推薦系統 
         </h1>
         {/* <p className="text-md">請輸入行政區與菜系開始查詢</p> */}
 
@@ -160,7 +160,7 @@ function App() {
       <div className="w-full flex-1 px-6 py-10 relative">
         {!searchTriggered && !isLoading && (
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-800 backdrop-blur-sm brightness-90 bg-white/70 px-4 z-10">
-            <h2 className="text-3xl font-bold mb-4">🍜 歡迎來到高雄呷飽未</h2>
+            <h2 className="text-3xl font-bold mb-4">🍜 歡迎來到餐廳推薦系統</h2>
             <p className="text-lg">請選擇行政區與菜系開始查詢</p>
           </div>
         )}
